@@ -127,4 +127,19 @@ public class Usuario {
     public void setCreadoEn(Instant creadoEn) {
         this.creadoEn = creadoEn;
     }
+
+    @Override
+    public String toString() {
+        return "Usuario{" +
+                "id=" + id +
+                ", nombres='" + nombres + '\'' +
+                ", apellidos='" + apellidos + '\'' +
+                ", direccionEnvio='" + direccionEnvio + '\'' +
+                ", email='" + email + '\'' +
+                ", fechaNacimiento=" + fechaNacimiento +
+                ", passwordHash='" + passwordHash + '\'' +
+                ", rol='" + rol + '\'' +
+                ", creadoEn=" + creadoEn +
+                '}';
+    }
 }

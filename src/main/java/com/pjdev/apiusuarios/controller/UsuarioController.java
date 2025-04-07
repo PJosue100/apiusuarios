@@ -2,10 +2,9 @@ package com.pjdev.apiusuarios.controller;
 
 
 
+import com.pjdev.apiusuarios.DTO.FormularioCambioContrasenia;
 import com.pjdev.apiusuarios.model.Usuario;
 import com.pjdev.apiusuarios.services.UsuarioService;
-import org.springframework.http.HttpHeaders;
-import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
@@ -44,7 +43,6 @@ public class UsuarioController {
     }
 
     @PostMapping("/new")
-    @PreAuthorize("hasRole('ADMIN')")
     public ResponseEntity<Usuario> crearUsuario(@RequestBody Usuario usuario) {
         return ResponseEntity.ok(usuarioService.crearUsuario(usuario));
     }
@@ -54,4 +52,15 @@ public class UsuarioController {
     public ResponseEntity<Usuario> modificarUsuario(@PathVariable Long id, @RequestBody Usuario usuario) {
         return ResponseEntity.ok(usuarioService.modificarUsuario(id, usuario));
     }
+
+    @PutMapping("/recovery-pass")
+    public ResponseEntity<?> recuperarContraseniaUsuario(@RequestBody String email) {
+        return ResponseEntity.ok(usuarioService.recuperarContraseniaUsuario(email));
+    }
+
+    @PutMapping("/change-pass/{id}")
+    public ResponseEntity<?> cambiarContraseniaUsuario(@PathVariable Long id, @RequestBody FormularioCambioContrasenia formularioCambioContrasenia) {
+        return ResponseEntity.ok(usuarioService.cambiarContraseniaUsuario(id, formularioCambioContrasenia));
+    }
+
 }
